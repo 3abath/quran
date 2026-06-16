@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
-        /* All styles remain unchanged from the previous working version */
+        /* All styles unchanged from previous version */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -670,6 +670,31 @@
             width: 1.5rem;
             text-align: center;
         }
+        .modal-body .default-benefits {
+            text-align: center;
+            padding: 0.5rem 0;
+        }
+        .modal-body .default-benefits .surah-detail {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .modal-body .default-benefits .surah-meta {
+            color: var(--text-muted);
+            margin: 0.3rem 0;
+        }
+        .modal-body .default-benefits .separator {
+            margin: 1rem 0;
+            border: 0;
+            border-top: 2px solid var(--border);
+        }
+        .modal-body .default-benefits .quote {
+            font-family: var(--font-quran);
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin: 1rem 0;
+            opacity: 0.8;
+        }
 
         body.mode-concentration .sidebar,
         body.mode-concentration header {
@@ -847,7 +872,7 @@
 
     <script>
         // ================================================================
-        //  فَضَائِلُ السُّوَرِ (Benefits of Surahs)
+        //  فَضَائِلُ السُّوَرِ (Benefits of Surahs) – specific known virtues
         // ================================================================
         const SURAH_BENEFITS = {
             "1": `
@@ -862,7 +887,7 @@
                 <ul>
                     <li><i class="fa-solid fa-check-circle"></i> <strong>آية الكرسي</strong> (الآية 255) أعظم آية في القرآن.</li>
                     <li><i class="fa-solid fa-check-circle"></i> قراءة سورة البقرة في البيت <strong>تطرد الشيطان</strong> (رواه مسلم).</li>
-                    <li><i class="fa-solid fa-check-circle"></i> <strong>سنام القرآن</strong> وذروته، نزل مع كل آية منها ثمانون ملكاً.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> <strong>sنام القرآن</strong> وذروته، نزل مع كل آية منها ثمانون ملكاً.</li>
                     <li><i class="fa-solid fa-check-circle"></i> تركها <strong>حسرة</strong>، ولا تستطيعها البطلة (السحرة).</li>
                 </ul>
             `,
@@ -870,7 +895,91 @@
                 <ul>
                     <li><i class="fa-solid fa-check-circle"></i> سورة آل عمران من <strong>الزهراوين</strong> (البقرة وآل عمران) تظلان صاحبهما يوم القيامة.</li>
                     <li><i class="fa-solid fa-check-circle"></i> فيها آية <strong>الاستجابة</strong> (ربنا لا تزغ قلوبنا بعد إذ هديتنا).</li>
-                    <li><i class="fa-solid fa-check-circle"></i> كانت النبي صلى الله عليه وسلم يقرأ بها في <strong>قيام الليل</strong>.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> كان النبي صلى الله عليه وسلم يقرأ بها في <strong>قيام الليل</strong>.</li>
+                </ul>
+            `,
+            "4": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>النساء</strong> هي سورة الأحكام والحقوق، وبها آية "النساء الصغرى".</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تضمنت تفصيل أحكام <strong>المواريث</strong> وحقوق النساء والضعفاء واليتامى.</li>
+                </ul>
+            `,
+            "5": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>المائدة</strong> من أواخر ما نزل من القرآن، وفيها آية إكمال الدين.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> امتازت بكثرة النداءات الإيمانية «يا أيها الذين آمنوا» وفصلت أحكام <strong>العقود والحلال والحرام</strong>.</li>
+                </ul>
+            `,
+            "6": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الأنعام</strong> نزلت جملة واحدة ليلاً وشيّعها سبعون ألف ملك.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> هي سورة <strong>التوحيد الكبرى</strong> التي ناقشت عقائد المشركين وأقامت الحجة عليهم.</li>
+                </ul>
+            `,
+            "7": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الأعراف</strong> أطول سورة مكية، وتعد كتاباً جامعاً للصراع بين الحق والباطل.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> انفردت بذكر قصة <strong>أصحاب الأعراف</strong>، وفصلت قصص الأنبياء مع أقوامهم بشكل بليغ.</li>
+                </ul>
+            `,
+            "8": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الأنفال</strong> هي سورة غزوة بدر الكبرى، وشرعت أحكام الجهاد والغنائم.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> وضعت القواعد الربانية <strong>للنصر والتمكين</strong> والثبات عند لقاء الأعداء.</li>
+                </ul>
+            `,
+            "9": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>التوبة</strong> (الفاضحة/المقشقشة) هي السورة الوحيدة التي <strong>لا تبدأ بالبسملة</strong>.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> ففضحت المنافقين ونواياهم، وتحدثت عن غزوة تبوك (العسرة) وتوبة الله على الثلاثة الذين خُلفوا.</li>
+                </ul>
+            `,
+            "10": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>يونس</strong> ركزت على قضايا العقيدة، الإيمان بالوحي، والقضاء والقدر.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> ذكرت خصوصية <strong>قوم يونس</strong> الذين آمنوا فكشف الله عنهم عذاب الخزي.</li>
+                </ul>
+            `,
+            "11": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>هود</strong> قال عنها النبي صلى الله عليه وسلم: «شيبتني هود وأخواتها».</li>
+                    <li><i class="fa-solid fa-check-circle"></i> احتوت على أمر إلهي حازم: <strong>«فاستقم كما أمرت»</strong>، وعرضت عاقبة المكذبين بقوة.</li>
+                </ul>
+            `,
+            "12": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>يوسف</strong> هي <strong>أحسن القصص</strong>، نزلت لتثبيت قلب النبي صلى الله عليه وسلم في عام الحزن.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تبعث الأمل في النفوس وتوضح كيف يتحول الضيق إلى فرج والابتلاء إلى تمكين.</li>
+                </ul>
+            `,
+            "13": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الرعد</strong> توضح قوة الحق وضعف الباطل، وفيها آية: «ألا بذكر الله تطمئن القلوب».</li>
+                    <li><i class="fa-solid fa-check-circle"></i> أبرزت مظاهر قدرة الله في الكون وعجائب خلقه كـ <strong>تسبيح الرعد</strong> بحمده والملائكة من خيفته.</li>
+                </ul>
+            `,
+            "14": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>إبراهيم</strong> هدفها إخراج الناس من الظلمات إلى النور، وتضمنت دعاء الخليل إبراهيم عليه السلام.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> ضربت المثل بـ <strong>الكلمة الطيبة</strong> كشجرة طيبة، والكلمة الخبيثة كشجرة خبيثة.</li>
+                </ul>
+            `,
+            "15": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الحجر</strong> تضمنت التعهد الإلهي الخالد بحفظ القرآن: <strong>«إنا نحن نزلنا الذكر وإنا له لحافظون»</strong>.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تناولت بداية خلق الإنسان من صلصال، وتوعد إبليس بغواية بني آدم إلا العباد المخلصين.</li>
+                </ul>
+            `,
+            "16": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>النحل</strong> تسمى سورة النِّعم، حيث عددت نعم الله الظاهرة والباطنة على خلقه.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> وفيها الآية الجامعة لأصول التشريع الإسلامي: «إن الله يأمر بالعدل والإحسان وإيتاء ذي القربى».</li>
+                </ul>
+            `,
+            "17": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الإسراء</strong> (بنو إسرائيل) تفتتح بتمجيد الله على معجزة الإسراء بالنبي.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> كان النبي صلى الله عليه وسلم <strong>لا ينام حتى يقرأها</strong> هي وسورة الزمر كل ليلة.</li>
                 </ul>
             `,
             "18": `
@@ -879,10 +988,106 @@
                     <li><i class="fa-solid fa-check-circle"></i> <strong>عشر آيات</strong> من أولها (أو آخرها) عاصمة من <strong>فتنة الدجال</strong>.</li>
                 </ul>
             `,
+            "19": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>مريم</strong> هي السورة الوحيدة المسمّاة باسم امرأة، وتبرز رحمة الله بعباده (ذِكرُ رحمتِ ربك).</li>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة تهز الوجدان ببيان معجزات ولادة يحيى وعيسى عليهما السلام ونفي الولد عن الله جل وعلا.</li>
+                </ul>
+            `,
+            "20": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>طه</strong> كانت سبباً في إسلام عمر بن الخطاب رضي الله عنه لعظمة وجلال آياتها.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> افتتحت بـ «ما أنزلنا عليك القرآن لتشقى»، وفصلت رحلة موسى عليه السلام ومناجاته لربه.</li>
+                </ul>
+            `,
+            "21": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الأنبياء</strong> تسمى سورة الاستجابة، لأنها عرضت محن الأنبياء وكيف استجاب الله لهم بعد دعائهم.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> اشتملت على دعاء ذي النون: <strong>«لا إله إلا أنت سبحانك إني كنت من الظالمين»</strong> المنجي من الكرب.</li>
+                </ul>
+            `,
+            "22": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الحج</strong> هي السورة الوحيدة التي سميت بركن من أركان الإسلام، وتجمع بين العبادات والمعاملات.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تميزت بوجود <strong>سجدتين</strong> في آياتها، وافتتحت بنداء مرعب يذكر بزلزلة الساعة وأهوالها.</li>
+                </ul>
+            `,
+            "23": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>المؤمنون</strong> افتتحت بـ «قد أفلح المؤمنون» مبيّنة صفاتهم التي تؤهلهم لوراثة الفردوس الأعلى.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> ركزت على إثبات البعث والنشور وذكرت أطوار خلق الجنين البشري بدقة إعجازية.</li>
+                </ul>
+            `,
+            "24": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>النور</strong> هي سورة الآداب الاجتماعية وحفظ الأعراض، وفصلت أحكام الاستئذان والحجاب.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تضمنت <strong>آية النور</strong> العظيمة، وبرّأت أم المؤمنين عائشة رضي الله عنها في حادثة الإفك.</li>
+                </ul>
+            `,
+            "25": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الفرقان</strong> نزلت لتثبت صدق القرآن والرسالة، وسميت بـ "الفرقان" لأنه يفرق بين الحق والباطل.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> اختتمت بذكر الصفات الإيمانية الراقية لـ <strong>عباد الرحمن</strong> وجزائهم الغُرفة بما صبروا.</li>
+                </ul>
+            `,
+            "26": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الشعراء</strong> ركزت على إبطال مزاعم كفار مكة بأن القرآن شعر أو تنزلت به الشياطين.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تكررت فيها آية: «إن في ذلك لآية وما كان أكثرهم مؤمنين * وإن ربك لهو العزيز الرحيم» عقب قصص الأنبياء.</li>
+                </ul>
+            `,
+            "27": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>النمل</strong> امتازت بذكر نعم الله وتفضيله لداود وسليمان عليهما السلام، وقصة سليمان مع الهدهد وملكة سبأ.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> هي السورة الوحيدة التي وردت فيها <strong>البسملة مرتين</strong> (في أولها وفي آية: «إنه من سليمان وإنه بسم الله الرحمن الرحيم»).</li>
+                </ul>
+            `,
+            "28": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>القصص</strong> فصلت نشأة موسى عليه السلام منذ ولادته والتقاط آل فرعون له وحتى تكليفه بالرسالة.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> ضربت مثلاً لفتنة المال في قصة <strong>قارون</strong> وعاقبة غروره وخسف الأرض به وبداره.</li>
+                </ul>
+            `,
+            "29": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>العنكبوت</strong> محورها الثبات على الإيمان ومواجهة الفتن والابتلاءات: «أحسب الناس أن يتركوا أن يقولوا آمنا وهم لا يفتنون».</li>
+                    <li><i class="fa-solid fa-check-circle"></i> شبهت عقيدة الشرك بـ <strong>بيت العنكبوت</strong> في الوهن والضعف.</li>
+                </ul>
+            `,
+            "30": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الروم</strong> تضمنت معجزة غيبية تحققت بدقة بانتصار الروم على الفرس في بضع سنين.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> ذكرت <strong>آيات الله الكونية</strong> كخلق الأزواج لتسكنوا إليها، واختلاف الألسنة والألوان.</li>
+                </ul>
+            `,
+            "31": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>لقمان</strong> اشتهرت بالوصايا التربوية العميقة والخالدة التي وجهها لقمان الحكيم لابنه.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> اختتمت بـ <strong>مفاتيح الغيب الخمسة</strong> التي لا يعلمها إلا الله (الساعة، الغيث، ما في الأرحام، الكسب، ومكان الموت).</li>
+                </ul>
+            `,
             "32": `
                 <ul>
                     <li><i class="fa-solid fa-check-circle"></i> كان النبي صلى الله عليه وسلم يقرأ سورة السجدة و <strong>هل أتى</strong> في صلاة الفجر يوم الجمعة.</li>
                     <li><i class="fa-solid fa-check-circle"></i> فيها آية <strong>السجدة</strong>، ومن سجدها كان له أجر عظيم.</li>
+                </ul>
+            `,
+            "33": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الأحزاب</strong> تناولت تفاصيل غزوة الخندق (الأحزاب)، ونظمت الأحكام الأسرية لبيت النبوة والأمة.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تضمنت آية <strong>الصلاة على النبي</strong>: «إن الله وملائكته يصلون على النبي...»، وآية حمل الإنسان للأمانة.</li>
+                </ul>
+            `,
+            "34": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>سبأ</strong> افتتحت بالحمد، وناقشت قضية الشكر من خلال نموذجين: داود وسليمان الشاكرين، وقوم سبأ الجاحدين.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> ركزت على إبطال شبهات المشركين حول إنكار البعث والحساب.</li>
+                </ul>
+            `,
+            "35": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>فاطر</strong> (الملائكة) تبرز عظمة الله الخالق وتفرده بالخلق والتدبير والرزق: «يا أيها الناس أنتم الفقراء إلى الله».</li>
+                    <li><i class="fa-solid fa-check-circle"></i> قسمت الأمة في تعاملها مع الكتاب إلى: ظالم لنفسه، مقتصد، وسابق بالخيرات.</li>
                 </ul>
             `,
             "36": `
@@ -891,34 +1096,458 @@
                     <li><i class="fa-solid fa-check-circle"></i> من قرأها <strong>ليلة الجمعة</strong> غفر له (رواه الترمذي).</li>
                 </ul>
             `,
+            "37": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الصافات</strong> هي أول سورة تفتتح بقسم بالملائكة الأبرار، ومحورها حماية التوحيد ودحر الشياطين بالشهب.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> فصلت قصة الذبيح إسماعيل عليه السلام، وتتميز بـ <strong>كثرة السلام</strong> فيها على الأنبياء.</li>
+                </ul>
+            `,
+            "38": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>ص</strong> ركزت على قضية الخصومة والعدل، وعرضت قصص الأنبياء (داود وسليمان وأيوب) كأمثلة للصبر والإنابة.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> كشفت طبيعة الحوار الذي دار في الملأ الأعلى واعتراض إبليس وسجوده تكبراً.</li>
+                </ul>
+            `,
+            "39": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الزمر</strong> كان النبي صلى الله عليه وسلم يقرأها كل ليلة قبل النوم، وتسمى سورة الإخلاص والتوجيه للعبادة النظيفة.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> فيها آية الأمل العظمى: <strong>«يا عبادي الذين أسرفوا على أنفسهم لا تقنطوا من رحمة الله»</strong>، وتنتهي بسوق المؤمنين زُمراً للجنة.</li>
+                </ul>
+            `,
+            "40": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>غافر</strong> (المؤمن) هي أولى سور <strong>الحواميم</strong> السبعة (التي تبدأ بـ "حم")، والتي تسمى "ديباج القرآن".</li>
+                    <li><i class="fa-solid fa-check-circle"></i> انفردت بذكر قصة "مؤمن آل فرعون" الذي كتم إيمانه ودافع عن موسى عليه السلام.</li>
+                </ul>
+            `,
+            "41": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>فصلت</strong> (حم السجدة) سورة دعوية واجهت صناديد قريش، وفيها خرّ عتبة بن ربيعة ساجداً عند سماعها.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> وصفت القرآن بأنه: «كتاب أحكمت آياته ثم فصلت من لدن حكيم خبير»، وبينت ثبات مستقيمي الطريقة عند الموت.</li>
+                </ul>
+            `,
+            "42": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الشورى</strong> وضعت المبدأ الإسلامي الأصيل في إدارة شؤون المجتمع والدولة: <strong>«وأمرهم شورى بينهم»</strong>.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> ركزت على وحدة الدين وتشريعات الأنبياء جميعاً، وبيان صور الوحي الإلهي للبشر.</li>
+                </ul>
+            `,
+            "43": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الزخرف</strong> حاربت المقاييس المادية الزائفة لأهل الدنيا الذين جعلوا الزخرف والذهب معياراً للأفضيلية.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> قررت الحقيقة الخالدة: «الأخلاء يومئذ بعضهم لبعض عدو إلا المتقين».</li>
+                </ul>
+            `,
+            "44": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الدخان</strong> تحدثت عن نزول القرآن في ليلة مباركة (ليلة القدر)، وعن آية الدخان التي تصيب المكذبين.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> ورد في بعض الآثار الضعيفة فضل قراءتها ليلاً لاستغفار الملائكة، وتناولت هلاك فرعون وجنوده وبكاء السماء.</li>
+                </ul>
+            `,
+            "45": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الجاثية</strong> سميت بذلك لعرضها مشهداً رهيباً من مشاهد القيامة حيث تجثو كل أمة على ركبها للحساب.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> ركزت على لجم الدهريين والملاحدة القائلين: «ما هي إلا حياتنا الدنيا نموت ونحيا وما يهلكنا إلا الدهر».</li>
+                </ul>
+            `,
+            "46": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الأحقاف</strong> هي خاتمة سور الحواميم، وتحدثت عن مساكن قوم عاد (الأحقاف)، وعن إسلام وإيمان <strong>نفر من الجن</strong> بالقرآن.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> أوصت بالوالدين إحساناً، وحثت على الصبر والتشبه بـ «أولي العزم من الرسل».</li>
+                </ul>
+            `,
+            "47": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>محمد</strong> (وتسمى سورة القتال) تتميز بذكر اسم النبي ﷺ وتوضح أحكام الجهاد والأسرى.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> حذرت من حبوط الأعمال وضلال السعي، ووعدت بـ <strong>أنهار الجنة</strong> الأربعة (ماء، لبن، خمر، وعسل مصفى).</li>
+                </ul>
+            `,
+            "48": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الفتح</strong> نزلت في الطريق عند القفول من صلح الحديبية، وقال عنها النبي ﷺ: «لقد أنزلت علي الليلة سورة لهي أحب إلي مما طلعت عليه الشمس».</li>
+                    <li><i class="fa-solid fa-check-circle"></i> بشرت بـ <strong>الفتح المبين</strong> والمغفرة، وتضمنت ذكر الرضوان عن بايعوا تحت الشجرة.</li>
+                </ul>
+            `,
+            "49": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الحجرات</strong> هي سورة الأخلاق والآداب الإسلامية الرفيعة وبناء المجتمع الفاضل.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> حرمت السخرية، الغيبة، التجسس، والتنابز بالألقاب، ورسخت مقياس التفاضل: <strong>«إن أكرمكم عند الله أتقاكم»</strong>.</li>
+                </ul>
+            `,
+            "50": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>ق</strong> كان النبي ﷺ يقرأ بها كثيراً في خطبة يوم الجمعة وعيد الأضحى والفجر لما فيها من التذكير بالمبدأ والمعاد.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> ركزت على عظمة المراقبة الإلهية: «ما يلفظ من قول إلا لديه رقيب عتيد»، وسكرات الموت بالحق.</li>
+                </ul>
+            `,
+            "51": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الذاريات</strong> قررت الغاية الأساسية والأولى من خلق الإنس والجن: <strong>«وما خلقت الجن والإنس إلا ليعبدون»</strong>.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> بينت صفات المتقين وجزائهم، وذكرت بشارة الملائكة لإبراهيم وإهلاك قوم لوط وثمود وعاد.</li>
+                </ul>
+            `,
+            "52": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الطور</strong> سمعها جبير بن مطعم قبل أن يسلم والنبي يقرأ بها في المغرب فقال: «كاد قلبي أن يطير».</li>
+                    <li><i class="fa-solid fa-check-circle"></i> دحضت شبهات الكفار بأسئلة عقلية صارمة: «أم خُلقوا من غير شيء أم هم الخالقون».</li>
+                </ul>
+            `,
+            "53": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>النجم</strong> هي أول سورة أعلن النبي ﷺ قراءتها في الحرم وسجد في آخرها المسلمون والمشركون هيبةً لها.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> وثقت رحلة المعراج والوصول إلى <strong>سدرة المنتهى</strong> ورؤية جبريل على صورته الملائكية الحقيقية.</li>
+                </ul>
+            `,
+            "54": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>القمر</strong> افتتحت بمعجزة حسية باهرة هزت قريشاً وهي <strong>انشقاق القمر</strong>.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تميزت بتكرار آية تيسير فهم الذكر: «ولقد يسرنا القرآن للذكر فهل من مدكر» أربع مرات.</li>
+                </ul>
+            `,
+            "55": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الرحمن</strong> تسمى <strong>عروس القرآن</strong>، وافتتحت باسم الله "الرحمن" وتعداد آلائه الإعجازية.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تميزت بالترجيع الإيقاعي المتكرر 31 مرة للآية الحازمة: «فبأي آلاء ربكما تكذبان».</li>
+                </ul>
+            `,
+            "56": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الواقعة</strong> ورد في الأثر أنها مانعة من الفاقة (الفقر) لمن قرأها كل ليلة.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> ذكرت أهوال القيامة وتقسيم الناس إلى ثلاثة أصناف (أصحاب الميمنة، المشأمة، والسابقون).</li>
+                </ul>
+            `,
+            "57": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الحديد</strong> هي رأس سور "المسبحات" (التي تبدأ بـ سبح أو يسبح)، وتناولت حقيقة الإيمان والإنفاق.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> بينت التوازن والمنفعة في خلق الحديد: «وأنزلنا الحديد فيه بأس شديد ومنافع للناس».</li>
+                </ul>
+            `,
+            "58": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>المجادلة</strong> افتتحت بنصرة الله لامرأة تشتكي زوجها (خولة بنت ثعلبة): «قد سمع الله قول التي تجادلك في زوجها».</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تميزت بخاصية فريدة: <strong>ورد لفظ الجلالة (الله) في كل آية من آياتها</strong> دون استثناء.</li>
+                </ul>
+            `,
+            "59": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> أواخر سورة <strong>الحشر</strong> اشتملت على أسماء الله الحسنى وصفاته العُلا.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> ورد في فضل الآيات الثلاث الأخيرة منها استغفار سبعين ألف ملك لمن قرأها صباحاً أو مساءً.</li>
+                </ul>
+            `,
+            "60": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الممتحنة</strong> نظمت العلاقات والروابط الخارجية للدولة الإسلامية على أساس الولاء والبراء لا القرابة المادية.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> سميت بذلك لأن الله أمر باختبار وامتحان النساء المهاجرات للتأكد من صدق إيمانهن.</li>
+                </ul>
+            `,
+            "61": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الصف</strong> حثت على وحدة الصف الإسلامي والجهاد الجماعي: «إن الله يحب الذين يقاتلون في سبيله صفاً كأنهم بنيان مرصوص».</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تضمنت البشارة الصريحة من عيسى عليه السلام بالنبي أحمد (محمد) ﷺ.</li>
+                </ul>
+            `,
+            "62": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> كان النبي صلى الله عليه وسلم يقرأ سورة <strong>الجمعة</strong> في صلاة الجمعة والمغرب ليلة الجمعة.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تذكر بوجوب السعي إلى الصلاة وترك البيع والتجارة عند النداء.</li>
+                </ul>
+            `,
+            "63": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>المنافقون</strong> كشفت أساليب النفاق الطاعنة في جسد الأمة وحيل زعيمهم عبد الله بن أبي بن سلول.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> وضعت القاعدة التحذيرية: «إن المنافقين لكاذبون»، وحذرت المؤمنين من إلهاء الأموال والأولاد عن ذكر الله.</li>
+                </ul>
+            `,
+            "64": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>التغابن</strong> سميت بهذا الاسم لأنها بينت الخسارة والغبن الحقيقي الذي يقع على الكافرين يوم القيامة.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> نبهت إلى أن من الأزواج والأولاد عدواً للمؤمنين فاحذروهم واعفوا واصفحوا.</li>
+                </ul>
+            `,
+            "65": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الطلاق</strong> تسمى أيضاً "سورة النساء الصغرى"، وفصلت أحكام الطلاق، العدة، والنفقة.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> ضمت آيات الفرج والرزق الشهيرة للقلوب الواجلة: <strong>«ومن يتق الله يجعل له مخرجاً * ويرزقه من حيث لا يحتسب»</strong>.</li>
+                </ul>
+            `,
+            "66": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>التحريم</strong> عاتبت النبي ﷺ في تحريمه ما أحل الله له إرضاءً لبعض أزواجه، ووضعت دستور البيوت الطاهرة.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> ضربت مثلاً سيئاً بامرأتي نوح ولوط، ومثلاً صالحاً ملهماً بامرأة فرعون (آسية) ومريم ابنة عمران.</li>
+                </ul>
+            `,
             "67": `
                 <ul>
                     <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الملك</strong> هي <strong>المانعة من عذاب القبر</strong>.</li>
-                    <li><i class="fa-solid fa-check-circle"></i> هي سورة <strong>تبارك</strong>، وهي تنجي صاحبها من عذاب القبر.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> هي سورة <strong>تبارك</strong>، تشفع لصاحبها حتى يُغفر له (30 آية حمت قارئها).</li>
+                </ul>
+            `,
+            "68": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>القلم</strong> (نون) افتتحت بالقسم بأداة الكتابة للدلالة على شرف العلم، وزكّت أخلاق النبي زكاة مطلقة: «وإنك لعلى خلق عظيم».</li>
+                    <li><i class="fa-solid fa-check-circle"></i> عرضت قصة "أصحاب الجنة" (البستان) كعبرة لمن يمنع حق الفقراء والمساكين.</li>
+                </ul>
+            `,
+            "69": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الحاقة</strong> أظهرت جلال وعظمة القيامة، وفصلت عاقبة هلاك ثمود وعاد وفرعون بالصاعقة والطاغية.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> صورت فرحة الفائز بكتابه بيمينه: «هاؤم اقرؤوا كتابيه»، وحسرة الخاسر بشماله.</li>
+                </ul>
+            `,
+            "70": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>المعارج</strong> سميت بذلك لبيان عروج الملائكة إلى الله في يوم كان مقداره خمسين ألف سنة، وتأمر بالصبر الجميل.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> وصفت طبيعة النفس الإنسانية غير المهذبة بالإيمان (هلوعاً، جزوعاً، ومنوعاً) واستثنت المصلين.</li>
+                </ul>
+            `,
+            "71": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>نوح</strong> عرضت نموذجاً مخلصاً وصابراً للدعوة إلى الله على مدار 950 سنة بكافة الأساليب (ليلاً ونهاراً، سراً وجهاراً).</li>
+                    <li><i class="fa-solid fa-check-circle"></i> بينت ثمرة <strong>الاستغفار</strong> الدنيوية المباشرة: «يرسل السماء عليكم مدراراً * ويمددكم بأموال وبنين...».</li>
+                </ul>
+            `,
+            "72": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الجن</strong> كشفت بدقة غيبية عن عالم الجن عند استماعهم للقرآن وتأثرهم البالغ به وإعلانهم التوحيد.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> أكدت على حماية الوحي بالرصد والشهب، وأن المساجد لله فلا يدعى مع الله أحداً.</li>
+                </ul>
+            `,
+            "73": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>المزمل</strong> نزل صدرها بأمر النبي ﷺ بـ <strong>قيام الليل</strong> وترتيل القرآن ترتيلاً لإعداد النفس للقول الثقيل.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> خفف الله في آخرها عن الأمة بمراعاة المرضى والمسافرين والمجاهدين.</li>
+                </ul>
+            `,
+            "74": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>المدثر</strong> هي أول سورة أمرت النبي ﷺ بالدعوة والجهر بالرسالة والإنذار: «يا أيها المدثر * قم فأنذر».</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تضمنت إشارات لطهارة الثياب واجتناب الرجز، ووصف سقر وخزنتها التسعة عشر.</li>
+                </ul>
+            `,
+            "75": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>القيامة</strong> أقسم الله فيها بيوم القيامة وبالنفس اللوامة، وذكرت عجز الإنسان عن الهرب: «يقول الإنسان يومئذ أين المفر».</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تضمنت نهي الله لنبيّه عن تحريك لسانه بالعجل عند نزول الوحي متكفلاً بحفظه وبيانه: «إن علينا جمعه وقرآنه».</li>
+                </ul>
+            `,
+            "76": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الإنسان</strong> (هل أتى) كان النبي يداوم على قراءتها في الركعة الثانية من صلاة فجر يوم الجمعة.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> وصفت نعيم أهل الجنة من لباس حرير، شراب زنجبيل وكافور، وملك كبير بالتفصيل تشجيعاً للمؤمنين.</li>
+                </ul>
+            `,
+            "77": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>المرسلات</strong> هي آخر سورة نزلت بمكة قبل الهجرة، وتسمى سورة "التهديد والوعيد" للمكذبين.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تكررت فيها عشر مرات آية الزجر العظيمة: «ويل يومئذ للمكذبين».</li>
+                </ul>
+            `,
+            "78": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>النبأ</strong> (عمّ) تساءل فيها كفار مكة عن النبأ العظيم وهو البعث والنشور، وفيها تذكرة بليغة بالقيامة.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> عرضت الآيات الكونية الباهرة المثبتة للقدرة الربانية كالمهاد والأوتاد والسبع الشداد.</li>
+                </ul>
+            `,
+            "79": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>النازعات</strong> افتتحت بالقسم بالملائكة الموكلة بقبض الأرواح بشدة (النازعات غرقاً) وبلطف (الناشطات نشطاً).</li>
+                    <li><i class="fa-solid fa-check-circle"></i> قارنت بين عاقبة الطاغي المستكبر ومآل الخائف من مقام ربه الناهي للنفس عن الهوى.</li>
+                </ul>
+            `,
+            "80": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>عبس</strong> عاتبت النبي ﷺ بأسلوب راقٍ لانشغاله بصناديد قريش عن ابن أم مكتوم الأعمى الذي جاء يستفتيه.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> بينت شرف ومكانة الصحف القرآنية بأيدي سفرة كرام بررة، وصورت مشهد فرار المرء من أخيه وأمه وأبيه.</li>
+                </ul>
+            `,
+            "81": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>التكوير</strong> قال عنها النبي ﷺ: «من سره أن ينظر إلى يوم القيامة كأنه رأي عين فليقرأ إذا الشمس كورت...».</li>
+                    <li><i class="fa-solid fa-check-circle"></i> رسمت مشهداً انقلابياً كلياً للكون باحتراق البحار، وتسيير الجبال، وسؤال الموؤودة بأي ذنب قتلت.</li>
+                </ul>
+            `,
+            "82": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الانفطار</strong> تابعة لحديث «من سره أن ينظر إلى يوم القيامة كأنه رأي عين»، وتبرز انشقاق السماء وانتثار الكواكب.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> عاتبت الإنسان المقصر: «يا أيها الإنسان ما غرك بربك الكريم»، وثبّتت وجود الحفظة الكرام الكاتبين.</li>
+                </ul>
+            `,
+            "83": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>المطففين</strong> توعدت بحزم المتلاعبين بالأوزان والمقاييس الدنيوية في المعاملات المالية.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> بينت مستودع كتاب الفجار (سجين) وكتاب الأبرار (عليون)، واختتمت بنصرة المؤمنين وضلال سخافة الكفار منهم.</li>
+                </ul>
+            `,
+            "84": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الانشقاق</strong> السورة الثالثة المعنية بـ "رأي العين" لأهوال القيامة وانقياد السماء والأرض لأمر ربهما وحُقّ لهما.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> وضحت كدح الإنسان المستمر في الحياة حتى لقاء ربه ليحاسب حساباً يسيراً أو ينقلب إلى أهله مسروراً.</li>
+                </ul>
+            `,
+            "85": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>البروج</strong> واسى الله فيها المؤمنين بقصة <strong>أصحاب الأخدود</strong> وثباتهم الأسطوري على التوحيد في وجه النار.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> أكدت شرف وحفظ القرآن في لوح محفوظ، وتوعدت الجبابرة مستحضرةً هلاك جنود فرعون وثمود.</li>
+                </ul>
+            `,
+            "86": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الطارق</strong> أقسمت بالطارق (النجم الثاقب) على أن كل نفس عليها حافظ من الله، وذكرت أصل خلق الإنسان من ماء دافق.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> وصفت القرآن بأنه: «قول فصل وما هو بالهزل»، وهددت الكافرين بإمهالهم رويداً.</li>
+                </ul>
+            `,
+            "87": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الأعلى</strong> كان النبي صلى الله عليه وسلم يحبها ويقرأ بها في صلاة العيدين والجمعة والوتر.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> قررت نجاة وفلاح من تزكى وذكر اسم ربه فصلى، وأكدت توافق دعوتها مع صحف إبراهيم وموسى.</li>
+                </ul>
+            `,
+            "88": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الغاشية</strong> كان يقرأ بها النبي صلى الله عليه وسلم في صلاة العيدين والجمعة مع سورة الأعلى.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> قسمت الناس إلى وجوه خاشعة عاملة ناصبة في النار، ووجوه ناعمة راضية في جنة عالية، وحددت مهمة الرسول: «إنما أنت مذكر».</li>
+                </ul>
+            `,
+            "89": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الفجر</strong> أقسمت بالليالي العشر الفاضلة (عشر ذي الحجة)، وعرضت بطش الله بعاد إرم وثمود وفرعون ذي الأوتاد.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> اختتمت بأحنّ نداء رباني يبشر المؤمن عند الموت: <strong>«يا أيتها النفس المطمئنة ارجعي إلى ربك راضية مرضية»</strong>.</li>
+                </ul>
+            `,
+            "90": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>البلد</strong> قررت طبيعة الحياة البشرية القائمة على التعب والمشقة: «لقد خلقنا الإنسان في كبد».</li>
+                    <li><i class="fa-solid fa-check-circle"></i> حثت على اقتحام العقبة الأخلاقية بإطعام الجوعى وفك الرقاب والتواصي بالصبر والمرحمة.</li>
+                </ul>
+            `,
+            "91": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الشمس</strong> تضمنت أطول قسم متتابع في القرآن (11 قَسماً) لبيان قضية خطيرة وهي تزكية النفس.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> حسمت معادلة النجاة: <strong>«قد أفلح من زكاها * وقد خاب من دساها»</strong>، وسردت عاقبة عقر ناقة الله وثمود.</li>
+                </ul>
+            `,
+            "92": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الليل</strong> وازنت بين مسارين: من أعطى واتقى وصدق بالحسنى (فيسر لليسرى)، ومن بخل واستغنى وكذب بالحسنى (فيسر للعسرى).</li>
+                    <li><i class="fa-solid fa-check-circle"></i> نزلت في فضل بذل وإنفاق أبي بكر الصديق رضي الله عنه: «وسيجنبها الأتقى * الذي يؤتي ماله يتزكى».</li>
+                </ul>
+            `,
+            "93": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الضحى</strong> نزلت لتسلية قلب النبي ﷺ وتبشيره بعد فتور وتأخر الوحي عنه وادعاء المشركين قِلاه.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> حملت الوعد العظيم: «ولسوف يعطيك ربك فترضى»، وأمرت برعاية اليتيم وإرشاد السائل والتحدث بنعمة الله.</li>
+                </ul>
+            `,
+            "94": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الشرح</strong> (الانشراح) سورة الامتنان بتهيئة باطن النبي ورسخت ثنائية العسر والفرج: <strong>«فإن مع العسر يسراً * إن مع العسر يسراً»</strong>.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> وجهت العبد عند الفراغ من شؤون الدنيا إلى النصب والاجتهاد في العبادة والرغبة إلى الله وحده.</li>
+                </ul>
+            `,
+            "95": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>التين</strong> أقسمت بالبقاع المقدسة المنبتة للرسالات لتؤكد تكريم خلق الإنسان: «لقد خلقنا الإنسان في أحسن تقويم».</li>
+                    <li><i class="fa-solid fa-check-circle"></i> حذرت من الرد إلى أسفل سافلين إلا أهل الإيمان والعمل الصالح، واختتمت بـ «أليس الله بأحكم الحاكمين».</li>
+                </ul>
+            `,
+            "96": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>العلق</strong> (اقرأ) هي <strong>أول ما نزل من القرآن الكريم</strong> في غار حراء، مدشنةً عصر العلم والقراءة.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تضمنت الزجر لأبي جهل، واختتمت بأمر السجود والاقتراب من الله: «كلا لا تطعه واسجد واقترب».</li>
+                </ul>
+            `,
+            "97": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>القدر</strong> تتحدث عن ليلة القدر العظيمة التي هي خير من ألف شهر ونزول القرآن الكريم فيها جملة واحدة للسموات الدنيا.</li>
+                </ul>
+            `,
+            "98": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>البينة</strong> (لم يكن) تسمى سورة أهل الكتاب، ووضعت فيصل التمايز بين "شر البرية" من كفر و "خير البرية" من آمن وعمل الصالحات.</li>
+                </ul>
+            `,
+            "99": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الزلزلة</strong> ورد في السنن أنها تعدل <strong>نصف القرآن</strong> لما تحويه من خلاصة البعث والجزاء الدقيق: <strong>«فمن يعمل مثقال ذرة خيراً يره»</strong>.</li>
+                </ul>
+            `,
+            "100": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>العاديات</strong> أقسمت بخيل الجهاد وصوت أنفاسها وجريها، لتلفت إلى جحود النفس الإنسانية وشحّها: «إن الإنسان لربه لكنود».</li>
+                </ul>
+            `,
+            "101": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>القارعة</strong> سورة قصيرة ومرعبة تقرع القلوب بأهوال القيامة كفراش مبثوث وعن ذهن الجبال المنسوفة كعهن منفوش، وموازين ثقيلة وخفيفة تؤول لهاوية.</li>
+                </ul>
+            `,
+            "102": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>التكاثر</strong> قال عنها النبي صلى الله عليه وسلم زاجراً: «أما يستطيع أحدكم أن يقرأ ألف آية في كل ليلة؟... أما يستطيع أحدكم أن يقرأ ألهاكم التكاثر».</li>
+                </ul>
+            `,
+            "103": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>العصر</strong> قال عنها الإمام الشافعي: «لو ما أنزل الله حجة على خلقه إلا هذه السورة لكفتهم» لأنها جمعت شروط النجاة الأربعة.</li>
+                </ul>
+            `,
+            "104": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الهمزة</strong> توعدت بعذاب الحطمة لكل من يغتاب الناس ويعيبهم بلسانه وإشاراته (الهمز واللمز) ويظن أن ماله يخلده.</li>
+                </ul>
+            `,
+            "105": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الفيل</strong> تذكرة بمعجزة حماية الكعبة من طغيان أبرهة الأشرم وجيشه بإرسال الطير الأبابيل، وهي دليل على حفظ بيته.</li>
+                </ul>
+            `,
+            "106": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>قريش</strong> تذكر قريشاً بنعمة الأمن والرزق وتيسير رحلتي الشتاء والصيف، وتأمرهم بإخلاص العبادة لرب هذا البيت.</li>
+                </ul>
+            `,
+            "107": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الماعون</strong> فضحت صفات مكذبي الدين كدفع اليتيم، ومنع الماعون، والسهو عن الصلاة رياءً.</li>
+                </ul>
+            `,
+            "108": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الكوثر</strong> هي <strong>أقصر سورة في القرآن الكريم</strong>، ونزلت تطييباً لقلب النبي ﷺ وبشارة له بنهر الكوثر وبتر شانئه (مبغضه).</li>
                 </ul>
             `,
             "109": `
                 <ul>
                     <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الكافرون</strong> تعدل <strong>ربع القرآن</strong>.</li>
-                    <li><i class="fa-solid fa-check-circle"></i> فيها براءة من الشرك، وهي سورة <strong>الإخلاص</strong> في النفي.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> فيها براءة قطعية من الشرك، وهي سورة <strong>الإخلاص</strong> في النفي والعبادة.</li>
+                </ul>
+            `,
+            "110": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>النصر</strong> (التوديع) تعدل <strong>ربع القرآن</strong> في بعض الروايات، وهي السورة التي نعت إلى النبي ﷺ قرب أجله ودخل الناس بعدها في الدين أفواجاً.</li>
+                </ul>
+            `,
+            "111": `
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>المسد</strong> معجزة غيبية تضمنت حكماً بهلاك أبي لهب وزوجته ودخولهما النار، وماتا على الكفر بعد نزولها بسنوات ولم يسلما رياءً.</li>
                 </ul>
             `,
             "112": `
                 <ul>
                     <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الإخلاص</strong> تعدل <strong>ثلث القرآن</strong> (رواه البخاري ومسلم).</li>
-                    <li><i class="fa-solid fa-check-circle"></i> هي سورة <strong>التوحيد</strong>، ومن أحبها أحبه الله.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> هي سورة <strong>التوحيد خالصاً</strong>، ونفي الصاحبة والولد والند، ومن أحبها أحبه الله.</li>
                 </ul>
             `,
             "113": `
                 <ul>
-                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الفلق</strong> من <strong>المعوذتين</strong>، وهي من أعظم ما يستعاذ به.</li>
-                    <li><i class="fa-solid fa-check-circle"></i> كانت من <strong>رقية</strong> النبي صلى الله عليه وسلم.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الفلق</strong> من <strong>المعوذتين</strong>، وهي من أعظم ما يستعاذ به من شرور المخلوقات، الغاسق، النفاثات، والحاسد.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> كانت من أهم <strong>رقية</strong> تحصين للنبي ﷺ وأهل بيته.</li>
                 </ul>
             `,
             "114": `
                 <ul>
-                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الناس</strong> من <strong>المعوذتين</strong>، وهي من أعظم ما يستعاذ به.</li>
-                    <li><i class="fa-solid fa-check-circle"></i> قال رسول الله صلى الله عليه وسلم: «لم يتعوذ بمثلهما قط».</li>
+                    <li><i class="fa-solid fa-check-circle"></i> سورة <strong>الناس</strong> من <strong>المعوذتين</strong>، وخاتمة كتاب الله الشريفة للاستعاذة من الوسواس الخناس من الجنة والناس.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> قال رسول الله صلى الله عليه وسلم عنها وعن الفلق: «لم يتعوذ بمثلهما قط».</li>
                 </ul>
             `
         };
@@ -1434,7 +2063,7 @@
                 loading.style.display = 'none';
                 const surahName = surahList.find(s => s.number === num)?.name || `سورة ${num}`;
                 nameDisplay.textContent = surahName;
-                metaDisplay.textContent = `${data.data.numberOfAyahs} آية • مكية / مدنية`;
+                metaDisplay.textContent = `${data.data.numberOfAyahs} آية • ${data.data.revelationType === 'Meccan' ? 'مكية' : 'مدنية'}`;
                 const playBtn = document.querySelector('.btn-lg.play');
                 if (playBtn) {
                     playBtn.dataset.surah = num;
@@ -1451,8 +2080,10 @@
                 let html = '';
                 ayahs.forEach((v, idx) => {
                     let text = v.text;
-                    if (num !== 1 && idx === 0 && text.startsWith('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ')) {
-                        text = text.replace('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ', '');
+                    if (num !== 1 && idx === 0) {
+                        text = text.replace(/^بِسْمِ\s+اللَّهِ\s+الرَّحْمَٰنِ\s+الرَّحِيمِ\s*/i, '');
+                        text = text.replace(/^بِسْمِ\s+ٱللَّهِ\s+ٱلرَّحْمَٰنِ\s+ٱلرَّحِيمِ\s*/i, '');
+                        text = text.trim();
                     }
                     html += `
                         <span class="verse-text">
@@ -1468,23 +2099,37 @@
             }
         }
 
+        // ================================================================
+        //  فَضَائِلُ السُّورَةِ (BENEFITS) – now with fallback for all surahs
+        // ================================================================
         function openBenefits(surahNum) {
             const modal = document.getElementById('benefitsModal');
             const title = document.getElementById('benefitsTitle');
             const body = document.getElementById('benefitsBody');
-            const surahName = surahList.find(s => s.number === surahNum)?.name || `سورة ${surahNum}`;
+
+            const surah = surahList.find(s => s.number === surahNum);
+            const surahName = surah ? surah.name : `سورة ${surahNum}`;
             title.textContent = `🌟 فضائل سورة ${surahName}`;
-            const benefitsText = SURAH_BENEFITS[surahNum];
-            if (benefitsText) {
-                body.innerHTML = benefitsText;
+
+            const specificBenefits = SURAH_BENEFITS[surahNum];
+            if (specificBenefits) {
+                body.innerHTML = specificBenefits;
             } else {
-                body.innerHTML = `
-                    <div class="error-text">
-                        ⚠️ لم نجد فضائل مذكورة لهذه السورة في هذه النسخة.<br>
-                        <small>يمكنك البحث في كتب السنة والتفاسير.</small>
-                    </div>
-                `;
+                // Build a default information card
+                let html = `<div class="default-benefits">`;
+                html += `<div class="surah-detail">${surahName}</div>`;
+                if (surah) {
+                    html += `<div class="surah-meta">عدد الآيات: ${surah.numberOfAyahs}</div>`;
+                    html += `<div class="surah-meta">النوع: ${surah.revelationType === 'Meccan' ? 'مكية' : 'مدنية'}</div>`;
+                }
+                html += `<hr class="separator" />`;
+                html += `<p>لم ترد فضائل خاصة بهذه السورة في الأحاديث النبوية المشهورة، ولكن قراءة القرآن كله خير وبركة، ولكل حرف عشر حسنات.</p>`;
+                html += `<div class="quote">﴿ وَقُرْآناً فَرَقْنَاهُ لِتَقْرَأَهُ عَلَى النَّاسِ عَلَىٰ مُكْثٍ وَنَزَّلْنَاهُ تَنزِيلًا ﴾ [الإسراء: 106]</div>`;
+                html += `<p style="color:var(--text-muted); font-size:0.9rem;">نسأل الله أن يبارك لنا في القرآن ويجعلنا من أهله.</p>`;
+                html += `</div>`;
+                body.innerHTML = html;
             }
+
             modal.classList.add('open');
         }
 
@@ -1495,6 +2140,9 @@
             if (e.target === this) closeBenefits();
         });
 
+        // ================================================================
+        //  SEARCH
+        // ================================================================
         async function doSearch(query) {
             if (!query.trim()) return;
             showView('search');
@@ -1579,6 +2227,9 @@
             }
         }
 
+        // ================================================================
+        //  NAVIGATION
+        // ================================================================
         function showView(name) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.getElementById(`view-${name}`).classList.add('active');
